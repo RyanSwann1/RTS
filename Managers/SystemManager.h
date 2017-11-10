@@ -7,6 +7,7 @@
 #include <deque>
 #include <array>
 
+class SystemMessageGlobalEntity;
 class SystemDirectMessagePosition;
 class SystemManager
 {
@@ -18,8 +19,9 @@ public:
 	SystemManager&& operator=(SystemManager&&) = delete;
 
 	void sendSystemDirectMessagePosition(const SystemDirectMessagePosition& systemMessage, SystemType systemType) const;
-
+	void sendGlobalEntitySystemMessage(const SystemMessageGlobalEntity& systemMessageGlobalEntity);
 	void addSystemMessage(const SystemMessage& systemMessage);
+
 	void draw(sf::RenderWindow& window) const;
 	void update();
 
@@ -42,6 +44,7 @@ private:
 		return *static_cast<System*>(system);
 	}
 
+	std::unique_ptr<SystemBase>& getSystemByType(SystemType systemType);
 	void handleEvents();
 	void sendMessageToSystems(const SystemMessage& systemMessage);
 };

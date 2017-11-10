@@ -9,6 +9,7 @@
 #include <Components\ComponentSelectable.h>
 #include <Systems\SystemAIMovement.h>
 #include <Systems\SystemDirectMessagePosition.h>
+#include <Systems\SystemMessageGlobalEntity.h>
 #include <iostream>
 
 BoxSelector::BoxSelector(Window& window, EventManager<InputEvent>& eventManager, SystemManager& systemManager)
@@ -71,7 +72,7 @@ void BoxSelector::onMouseButtonLeftDown()
 	if (m_secondaryLeftMouseButtonActivated)
 	{
 		m_secondaryLeftMouseButtonActivated = false;
-		m_systemManager.addSystemMessage(SystemMessage(SystemEvent::Deselected, SystemType::Selectable, 0, false, true));
+		m_systemManager.sendGlobalEntitySystemMessage(SystemMessageGlobalEntity(SystemEvent::Deselected, SystemType::Selectable));
 	}
 }
 
@@ -113,11 +114,11 @@ void BoxSelector::handleEntityCollisions()
 		const auto& componentCollidable = entityManager.getEntityComponent<ComponentCollidable>(ComponentType::Collidable, entity);
 		if (m_rectAABB.intersects(componentCollidable.m_AABB))
 		{
-			m_systemManager.addSystemMessage(SystemMessage(SystemEvent::Selected, SystemType::Selectable, entity->m_ID));
+			m_systemManager.addSystemMessage(SystemMessage(SystemEvent::Selected, SystemType::Selectable, entity));
 		}
 		else
 		{
-			m_systemManager.addSystemMessage(SystemMessage(SystemEvent::Deselected, SystemType::Selectable, entity->m_ID));
+			m_systemManager.addSystemMessage(SystemMessage(SystemEvent::Deselected, SystemType::Selectable, entity));
 		}
 	}
 }

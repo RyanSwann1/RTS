@@ -6,6 +6,7 @@
 #include <Managers\EntityManager.h>
 #include <Systems\SystemMovable.h>
 #include <Systems\SystemAIMovement.h>
+#include <Systems\SystemMessageGlobalEntity.h>
 
 SystemManager::SystemManager()
 	: m_systems(),
@@ -21,6 +22,11 @@ SystemManager::SystemManager()
 void SystemManager::sendSystemDirectMessagePosition(const SystemDirectMessagePosition & systemMessage, SystemType systemType) const
 {
 	getSystem<SystemAIMovement>(systemType).onSystemDirectMessagePosition(systemMessage);
+}
+
+void SystemManager::sendGlobalEntitySystemMessage(const SystemMessageGlobalEntity & systemMessageGlobalEntity)
+{
+	getSystemByType(systemMessageGlobalEntity.m_systemType)->onSystemGlobalEntityMessage(systemMessageGlobalEntity.m_systemEvent);
 }
 
 void SystemManager::addSystemMessage(const SystemMessage & systemMessage)
@@ -45,6 +51,11 @@ void SystemManager::update()
 	handleEvents();
 }
 
+std::unique_ptr<SystemBase>& SystemManager::getSystemByType(SystemType systemType)
+{
+	return m_systems[static_cast<int>(systemType)];
+}
+
 void SystemManager::handleEvents()
 {
 	while (!m_systemMessages.empty())
@@ -57,9 +68,7 @@ void SystemManager::handleEvents()
 
 void SystemManager::sendMessageToSystems(const SystemMessage & systemMessage)
 {
-
-
-	if (systemMessage.m_globalToSystems)
+	if (systemMessage.m_globalSystemMessage)
 	{
 		for (const auto& system : m_systems)
 		{
@@ -68,7 +77,6 @@ void SystemManager::sendMessageToSystems(const SystemMessage & systemMessage)
 	}
 	else
 	{
-		const SystemType systemType = systemMessage.m_systemType;
-		m_systems[static_cast<int>(system)]->onSystemMessage(systemMessage);
+		getSystemByType(systemMessage.m_systemType)->onSystemMessage(systemMessage);
 	}
 }

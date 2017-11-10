@@ -22,6 +22,7 @@ public:
 
 	virtual void update() const = 0;
 	virtual void onSystemDirectMessagePosition(const SystemDirectMessagePosition& systemMessage) const {}
+	virtual void onSystemGlobalEntityMessage(SystemEvent systemEvent) const {}
 	void onSystemMessage(const SystemMessage& systemMessage) const;
 
 	const SystemType m_type;
