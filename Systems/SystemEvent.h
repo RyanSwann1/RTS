@@ -8,5 +8,11 @@ enum class SystemEvent
 	MoveDown,
 	MoveLeft,
 	MoveRight,
-	SetTargetPosition
+	MoveUpRight,
+	MoveDownRight,
+	MoveDownLeft,
+	MoveUpLeft,
+	StopMovement,
+	SetMovementTargetPosition,
+	CorrectPosition
 };

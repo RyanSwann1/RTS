@@ -5,12 +5,12 @@
 Game::Game()
 	: m_frameTimer(),
 	m_inputEventManager(),
-	m_window(sf::Vector2i(800, 800), "SFML_WINDOW", m_inputEventManager),
+	m_window(sf::Vector2i(480, 640), "SFML_WINDOW", m_inputEventManager),
 	m_boxSelector(m_window, m_inputEventManager, m_systemManager),
 	m_entityManager(),
 	m_systemManager()
 {
-	m_entityManager.addEntity("Marine", sf::Vector2f(200, 200));
+	m_entityManager.addEntity("Marine", sf::Vector2f(192, 192));
 }
 
 bool Game::isRunning() const

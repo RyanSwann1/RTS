@@ -11,6 +11,7 @@
 #include <Systems\SystemDirectMessagePosition.h>
 #include <Systems\SystemMessageGlobalEntity.h>
 #include <iostream>
+#include <utility>
 
 BoxSelector::BoxSelector(Window& window, EventManager<InputEvent>& eventManager, SystemManager& systemManager)
 	: m_window(window),
@@ -95,7 +96,7 @@ void BoxSelector::onMouseButtonRightDown()
 			{
 				const auto mousePosition = sf::Vector2f(sf::Mouse::getPosition(m_window.getWindow()).x, sf::Mouse::getPosition(m_window.getWindow()).y);
 				m_systemManager.sendSystemDirectMessagePosition(SystemDirectMessagePosition(mousePosition, 
-					entity, SystemEvent::SetTargetPosition), SystemType::AIMovemement);
+					entity, SystemEvent::SetMovementTargetPosition), SystemType::AIMovemement);
 			}
 		}
 	}

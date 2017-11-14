@@ -17,7 +17,8 @@ public:
 	void update() const override;
 
 private:
-	void setEntityTargetPosition(const sf::Vector2f& targetPosition, std::unique_ptr<Entity>& entity) const;
-	void createMovementGraph(std::unique_ptr<Entity>& entity, EntityManager& entityManager, ComponentAIMovement& componentAIMovement) const;
+	void setNewMovementTargetPosition(const sf::Vector2f& targetPosition, std::unique_ptr<Entity>& entity) const;
 	void handleEntityMovement(const EntityManager& entityManager, std::unique_ptr<Entity>& entity) const;
+
+	void updatePositionToMoveTo(EntityManager& entityManager, std::unique_ptr<Entity>& entity) const;
 };

@@ -7,8 +7,8 @@ public:
 	SystemCollidable(SystemManager& systemManager, SystemType systemType, ComponentType requiredComponent);
 	SystemCollidable(const SystemCollidable&) = delete;
 	SystemCollidable& operator=(const SystemCollidable&) = delete;
-	SystemCollidable(SystemCollidable&) = delete;
-	SystemCollidable&& operator=(SystemCollidable&) = delete;
+	SystemCollidable(SystemCollidable&&) = delete;
+	SystemCollidable&& operator=(SystemCollidable&&) = delete;
 
 	void update() const override;
 };

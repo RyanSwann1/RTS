@@ -24,3 +24,12 @@ void DebugOverlay::clearShapes()
 {
 	m_shapes.clear();
 }
+
+void DebugOverlay::clearShape(const sf::Vector2f & position)
+{
+	auto iter = std::find_if(m_shapes.begin(), m_shapes.end(), [&position](const auto& shape) { return position == shape.getPosition(); });
+	if (iter != m_shapes.end())
+	{
+		m_shapes.erase(iter);
+	}
+}

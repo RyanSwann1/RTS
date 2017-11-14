@@ -7,6 +7,7 @@
 #include <Systems\SystemMovable.h>
 #include <Systems\SystemAIMovement.h>
 #include <Systems\SystemMessageGlobalEntity.h>
+#include <Systems\SystemPosition.h>
 
 SystemManager::SystemManager()
 	: m_systems(),
@@ -17,6 +18,7 @@ SystemManager::SystemManager()
 	addSystem<SystemCollidable>(SystemType::Collidable, ComponentType::Collidable);
 	addSystem<SystemMovable>(SystemType::Movable, ComponentType::Movable);
 	addSystem<SystemAIMovement>(SystemType::AIMovemement, ComponentType::AIMovement);
+	addSystem<SystemPosition>(SystemType::Position, ComponentType::Position);
 }
 
 void SystemManager::sendSystemDirectMessagePosition(const SystemDirectMessagePosition & systemMessage, SystemType systemType) const

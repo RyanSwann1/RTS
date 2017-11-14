@@ -13,5 +13,5 @@ void FrameTimer::update()
 
 float FrameTimer::getDeltaTime() const
 {
-	return m_timer.asMilliseconds();
+	return m_timer.asSeconds();
 }

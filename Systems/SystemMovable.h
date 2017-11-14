@@ -13,12 +13,12 @@ public:
 	SystemMovable(SystemMovable&&) = delete;
 	SystemMovable&& operator=(SystemMovable&&) = delete;
 
+	void onSystemEvent(SystemEvent systemEvent, std::unique_ptr<Entity>& entity) const override;
 	void update() const override;
 
 private:
-	void onSystemEvent(SystemEvent systemEvent, std::unique_ptr<Entity>& entity) const override;
 	void moveInDirection(SystemEvent systemEvent, std::unique_ptr<Entity>& entity) const;
-
-	void adjustPosition(const ComponentMovable& componentMovable, ComponentPosition& componentPosition) const;
+	void moveEntity(const ComponentMovable& componentMovable, ComponentPosition& componentPosition) const;
 	void resetVelocity(ComponentMovable& componentMovable) const;
+	void setEntityVelocity(const sf::Vector2f& speed, sf::Vector2f& velocity) const;
 };

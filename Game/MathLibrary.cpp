@@ -7,21 +7,37 @@ Direction MathLibrary::getDirectionFromBetweenPoints(const sf::Vector2f & pointA
 {
 	Direction direction;
 
-	if (pointB.x > pointA.x)
+	if (pointB.x > pointA.x && pointB.y == pointA.y)
 	{
 		direction = Direction::Right;
 	}
-	else if (pointB.x < pointA.x)
+	else if (pointB.x < pointA.x && pointB.y == pointA.y)
 	{
 		direction = Direction::Left;
 	}
-	else if (pointB.y < pointB.y)
+	else if (pointB.x == pointA.x && pointB.y > pointA.y)
+	{
+		direction = Direction::Down;
+	}
+	else if (pointB.x == pointA.x && pointB.y < pointA.y)
 	{
 		direction = Direction::Up;
 	}
-	else if (pointB.y > pointA.y)
+	else if (pointB.x < pointA.x && pointB.y < pointA.y)
 	{
-		direction = Direction::Down;
+		direction = Direction::UpLeft;
+	}
+	else if (pointB.x > pointA.x && pointB.y < pointA.y)
+	{
+		direction = Direction::UpRight;
+	}
+	else if (pointB.x < pointA.x && pointB.y > pointA.y)
+	{
+		direction = Direction::DownLeft;
+	}
+	else if (pointB.x > pointA.x && pointB.y > pointA.y)
+	{
+		direction = Direction::DownRight;
 	}
 	else if (pointA == pointB)
 	{

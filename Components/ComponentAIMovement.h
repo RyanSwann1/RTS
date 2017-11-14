@@ -8,10 +8,8 @@ class ComponentAIMovement : public ComponentBase
 {
 public:
 	ComponentAIMovement(ComponentType type, SystemType owningSystem)
-		: ComponentBase(type, owningSystem),
-		m_targetPosition(96, 96)
+		: ComponentBase(type, owningSystem)
 	{}
 
-	sf::Vector2f m_targetPosition;
 	MovementGraph m_movementGraph;
 };

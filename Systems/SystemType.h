@@ -7,6 +7,7 @@ enum class SystemType
 	Selectable,
 	Movable,
 	Drawable,
+	Position,
 	Total,
 	None
 };
